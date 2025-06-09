@@ -2,6 +2,16 @@ require('dotenv').config();
 var express = require('express');
 var app = express();
 
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.post("/name", (req, res) => {
+  const first = req.body.first;
+  const last = req.body.last;
+  res.json({ name: `${first} ${last}` });
+});
+
 app.use("/public", express.static(__dirname + "/public"));
 
 app.get("/name", (req, res) => {
