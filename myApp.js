@@ -6,7 +6,11 @@ app.use("/public", express.static(__dirname + "/public"));
 
 app.use(function(req, res, next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
-  next();
+next();
+  
+});app.get("/:word/echo", function(req, res) {
+  const word = req.params.word;
+  res.json({ echo: word });
 });
 
 app.get('/now',
